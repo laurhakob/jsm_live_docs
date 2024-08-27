@@ -1,13 +1,14 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* @import "@liveblocks/react-ui/styles.css"; 
-@import "@liveblocks/react-lexical/styles.css"; */
+/* @import "@liveblocks/react-ui/styles.css"; */
+/* @import "@liveblocks/react-lexical/styles.css"; */
 
 @import "../styles/dark-theme.css";
 
-/* ========================================== TAILWIND STYLES
+/* ========================================== TAILWIND STYLES */
 @layer base {
   :root {
     background: #09111f;
@@ -168,7 +169,7 @@
   .collaborative-room {
     @apply flex size-full max-h-screen flex-1 flex-col items-center overflow-hidden;
   }
-/* } */
+}
 
 /* ======================== Clerk Override */
 .cl-avatarBox {
