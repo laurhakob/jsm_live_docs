@@ -2,8 +2,9 @@ import { Inter as FontSans } from "next/font/google";
 import { cn } from "@/lib/utils";
 import "./globals.css";
 import { Metadata } from "next";
-import {ClerkProvider} from "@clerk/nextjs"
-import { dark } from "@clerk/themes"
+import { ClerkProvider } from "@clerk/nextjs";
+import { dark } from "@clerk/themes";
+import Provider from "./Provider";
 
 const fontSans = FontSans({
   subsets: ["latin"],
@@ -11,9 +12,9 @@ const fontSans = FontSans({
 });
 
 export const metadata: Metadata = {
-  title: 'LiveDocs',
-  description: 'Your go-to collaborative editor'
-}
+  title: "LiveDocs",
+  description: "Your go-to collaborative editor",
+};
 
 export default function RootLayout({
   children,
@@ -24,22 +25,22 @@ export default function RootLayout({
     <ClerkProvider
       appearance={{
         baseTheme: dark,
-        variables: { 
+        variables: {
           colorPrimary: "#3371FF",
-          fontSize: '16px'
+          fontSize: "16px",
         },
       }}
     >
-    <html lang="en" suppressHydrationWarning>
-      <body
-        className={cn(
-          "min-h-screen font-sans antialiased",
-          fontSans.variable
-        )}
-      >
-        {children}
-      </body>
-    </html>
+      <html lang="en" suppressHydrationWarning>
+        <body
+          className={cn(
+            "min-h-screen font-sans antialiased",
+            fontSans.variable
+          )}
+        >
+          <Provider>{children}</Provider>
+        </body>
+      </html>
     </ClerkProvider>
   );
 }
