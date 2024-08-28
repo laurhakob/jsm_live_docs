@@ -59,3 +59,32 @@ export const getDocument = async ({
     console.log(`Error happened while getting a room: ${error}`);
   }
 };
+
+export const updateDocument = async (roomId: string, title: string) => {
+  try {
+    const updatedRoom = await liveblocks.updateRoom(roomId, {
+      metadata: {
+        title,
+      },
+    });
+
+    revalidatePath(`/documents/${roomId}`);
+
+    return parseStringify(updatedRoom);
+  } catch (error) {
+    console.log(`Error happened while updating a room: ${error}`);
+
+    // console.error(`Error happened while updating a room: ${error}`);
+    // throw new Error("Failed to update the document");
+  }
+};
+
+export const getDocuments = async (email: string) => {
+  try {
+    const rooms = await liveblocks.getRooms({ userId: email });
+
+    return parseStringify(rooms);
+  } catch (error) {
+    console.log(`Error happened while getting rooms: ${error}`);
+  }
+};
