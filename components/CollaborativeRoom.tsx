@@ -10,6 +10,7 @@ import { Input } from "./ui/input";
 import Image from "next/image";
 import { updateDocument } from "@/lib/actions/room.actions";
 import Loader from "./Loader";
+import ShareModel from "./ShareModel";
 
 const CollaborativeRoom = ({
   roomId,
@@ -17,14 +18,12 @@ const CollaborativeRoom = ({
   users,
   currentUserType,
 }: CollaborativeRoomProps) => {
-
-
   const [documentTitle, setDocumentTitle] = useState(roomMetadata.title);
   const [editing, setEditing] = useState(false);
   const [loading, setLoading] = useState(false);
 
   const containerRef = useRef<HTMLDivElement>(null);
-  const inputRef = useRef<HTMLDivElement>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
 
   const updateTitleHandler = async (
     e: React.KeyboardEvent<HTMLInputElement>
@@ -118,6 +117,13 @@ const CollaborativeRoom = ({
 
             <div className="flex w-full flex-1 justify-end gap-2 sm:gap-3">
               <ActiveCollaborators />
+
+              <ShareModel 
+                roomId={roomId}
+                collaborators={users}
+                creatorId={roomMetadata.creatorId}
+                currentUserType={currentUserType}
+              />
 
               <SignedOut>
                 <SignInButton />
